@@ -1,0 +1,416 @@
+/* =========================================================================
+   RuneGate -- design tokens
+   Palette: void/near-black arena, epic-gold accent, cyan mana accent,
+   crimson danger accent. Display face Cinzel (fantasy carved-stone caps),
+   body/HUD face Rajdhani (techy condensed, esports scoreboard feel).
+   ========================================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap');
+
+:root {
+  --void: #05070d;
+  --void-2: #090c15;
+  --panel: #0f1420;
+  --panel-2: #161d2e;
+  --panel-border: #26314a;
+
+  --gold: #e8b84b;
+  --gold-dim: #8a6a2a;
+  --gold-glow: rgba(232, 184, 75, 0.35);
+
+  --cyan: #3ee6d8;
+  --cyan-dim: #1f6f68;
+
+  --crimson: #ff4d5e;
+  --crimson-dim: #7a1f28;
+
+  --text: #eef1f8;
+  --text-dim: #8891a8;
+  --text-faint: #566078;
+
+  --radius-lg: 18px;
+  --radius-md: 10px;
+  --shadow-deep: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(ellipse at 50% -10%, #131a2c 0%, var(--void) 55%, #020305 100%);
+  color: var(--text);
+  font-family: 'Rajdhani', sans-serif;
+  min-height: 100vh;
+}
+
+body {
+  background-attachment: fixed;
+}
+
+::selection { background: var(--gold-glow); color: var(--text); }
+
+a { color: var(--cyan); }
+
+h1, h2, h3, .display {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------------
+   Top bar
+   --------------------------------------------------------------------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  background: linear-gradient(180deg, rgba(15, 20, 32, 0.95), rgba(15, 20, 32, 0.55));
+  border-bottom: 1px solid var(--panel-border);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  backdrop-filter: blur(6px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  position: relative;
+}
+.brand-mark svg { width: 100%; height: 100%; }
+
+.brand-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.brand-name small {
+  display: block;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: var(--text-faint);
+  font-weight: 600;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.user-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px 6px 6px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+}
+.user-avatar {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: conic-gradient(from 180deg, var(--gold), var(--cyan), var(--gold));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 12px; color: var(--void);
+}
+.user-name { font-weight: 600; font-size: 14px; }
+
+.credit-pill {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, var(--panel-2), var(--panel));
+  border: 1px solid var(--gold-dim);
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px rgba(232, 184, 75, 0.08);
+}
+.credit-pill .coin { width: 16px; height: 16px; }
+.credit-pill .amount { font-weight: 700; font-size: 16px; color: var(--gold); font-variant-numeric: tabular-nums; }
+.credit-pill .label { font-size: 10px; letter-spacing: 0.15em; color: var(--text-faint); text-transform: uppercase; }
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--panel-border);
+  color: var(--text-dim);
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: border-color .15s, color .15s;
+  text-decoration: none;
+  font-size: 13px;
+}
+.btn-ghost:hover { border-color: var(--cyan-dim); color: var(--cyan); }
+
+/* ---------------------------------------------------------------------
+   Game stage
+   --------------------------------------------------------------------- */
+.stage {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+.stage-banner {
+  text-align: center;
+}
+.stage-banner .eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.35em;
+  color: var(--cyan);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.stage-banner h1 {
+  font-size: 30px;
+  color: var(--gold);
+  text-shadow: 0 0 24px var(--gold-glow);
+}
+.stage-banner .sub {
+  font-size: 13px;
+  color: var(--text-faint);
+  margin-top: 6px;
+  letter-spacing: 0.02em;
+}
+
+/* Hex gate frame around the grid -- the signature element */
+.gate-frame {
+  position: relative;
+  padding: 26px;
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(180deg, rgba(22, 29, 46, 0.9), rgba(9, 12, 21, 0.95));
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--shadow-deep), inset 0 0 40px rgba(62, 230, 216, 0.03);
+}
+.gate-frame::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: calc(var(--radius-lg) - 6px);
+  border: 1px solid rgba(232, 184, 75, 0.25);
+  pointer-events: none;
+}
+.gate-frame::after {
+  content: '';
+  position: absolute;
+  top: -1px; left: 10%; right: 10%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  filter: drop-shadow(0 0 6px var(--gold));
+}
+
+.reel-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  background: var(--void-2);
+  padding: 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--panel-border);
+}
+
+.tile {
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #1b2334, #0b0e17 75%);
+  border: 2px solid var(--panel-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform .12s ease, border-color .2s, box-shadow .2s;
+}
+.tile img {
+  width: 78%;
+  height: 78%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+.tile.win {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-glow), 0 0 22px var(--gold-glow);
+  animation: tile-pulse 0.6s ease-in-out infinite alternate;
+}
+.tile.scatter-tile {
+  border-color: var(--crimson);
+  box-shadow: 0 0 18px rgba(255, 77, 94, 0.45);
+}
+.tile.falling {
+  animation: tile-drop 0.32s cubic-bezier(.2,.8,.3,1);
+}
+@keyframes tile-pulse {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+@keyframes tile-drop {
+  from { transform: translateY(-40px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+/* ---------------------------------------------------------------------
+   HUD (bet / spin / win)
+   --------------------------------------------------------------------- */
+.hud {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 22px;
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-deep);
+}
+
+.hud-group { display: flex; align-items: center; gap: 14px; }
+
+.stat-block { text-align: left; min-width: 92px; }
+.stat-block .k { font-size: 10px; letter-spacing: 0.2em; color: var(--text-faint); text-transform: uppercase; }
+.stat-block .v { font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.stat-block .v.win-flash { color: var(--gold); }
+
+.bet-control {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--void-2);
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+  padding: 6px;
+}
+.bet-control button {
+  width: 30px; height: 30px; border-radius: 50%;
+  border: 1px solid var(--panel-border);
+  background: var(--panel-2);
+  color: var(--text);
+  font-size: 16px;
+  cursor: pointer;
+  line-height: 1;
+}
+.bet-control button:hover { border-color: var(--cyan); color: var(--cyan); }
+.bet-control .bet-amount { min-width: 56px; text-align: center; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+.spin-btn {
+  position: relative;
+  width: 84px; height: 84px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: conic-gradient(from 0deg, var(--gold), #fff3cf, var(--gold), var(--gold-dim), var(--gold));
+  box-shadow: 0 0 0 4px var(--void-2), 0 0 30px var(--gold-glow), var(--shadow-deep);
+  display: flex; align-items: center; justify-content: center;
+}
+.spin-btn::before {
+  content: '';
+  position: absolute; inset: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 30%, #1c2436, #05070d 80%);
+}
+.spin-btn svg {
+  position: relative; z-index: 2;
+  width: 30px; height: 30px;
+  fill: var(--gold);
+}
+.spin-btn:disabled { opacity: 0.55; cursor: not-allowed; filter: grayscale(0.4); }
+.spin-btn.spinning svg { animation: spin-rot 0.5s linear infinite; }
+@keyframes spin-rot { to { transform: rotate(360deg); } }
+
+.auto-toggle {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  font-size: 10px; letter-spacing: 0.12em; color: var(--text-faint); text-transform: uppercase;
+}
+.switch {
+  width: 40px; height: 22px; border-radius: 999px;
+  background: var(--void-2); border: 1px solid var(--panel-border);
+  position: relative; cursor: pointer;
+}
+.switch .knob {
+  position: absolute; top: 2px; left: 2px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--text-faint);
+  transition: left .18s, background .18s;
+}
+.switch.on { border-color: var(--cyan-dim); }
+.switch.on .knob { left: 20px; background: var(--cyan); }
+
+/* ---------------------------------------------------------------------
+   Overlays: win banner, free spin banner
+   --------------------------------------------------------------------- */
+.overlay {
+  position: fixed; inset: 0;
+  background: rgba(3, 4, 8, 0.72);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 100;
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s;
+}
+.overlay.show { opacity: 1; pointer-events: auto; }
+
+.overlay-card {
+  text-align: center;
+  padding: 40px 56px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  border: 1px solid var(--gold-dim);
+  box-shadow: 0 0 60px var(--gold-glow), var(--shadow-deep);
+  transform: scale(0.9);
+  transition: transform .25s;
+}
+.overlay.show .overlay-card { transform: scale(1); }
+
+.overlay-card .eyebrow { color: var(--cyan); letter-spacing: 0.3em; font-size: 12px; text-transform: uppercase; }
+.overlay-card h2 { font-size: 40px; color: var(--gold); margin: 10px 0; text-shadow: 0 0 30px var(--gold-glow); }
+.overlay-card .amount { font-size: 52px; font-weight: 900; font-family: 'Cinzel', serif; color: var(--text); }
+.overlay-card .cta { margin-top: 22px; }
+
+/* ---------------------------------------------------------------------
+   Toast / error banner
+   --------------------------------------------------------------------- */
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: var(--panel-2);
+  border: 1px solid var(--crimson-dim);
+  color: var(--text);
+  padding: 12px 22px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .2s, transform .2s;
+  z-index: 200;
+  box-shadow: var(--shadow-deep);
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ---------------------------------------------------------------------
+   Utility
+   --------------------------------------------------------------------- */
+.footnote {
+  color: var(--text-faint);
+  font-size: 11px;
+  text-align: center;
+  max-width: 560px;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .stage { padding: 16px 10px 40px; }
+  .gate-frame { padding: 14px; }
+  .reel-grid { gap: 6px; padding: 8px; }
+  .hud { flex-wrap: wrap; padding: 14px; }
+  .spin-btn { width: 70px; height: 70px; }
+  .overlay-card { padding: 28px 24px; }
+}
